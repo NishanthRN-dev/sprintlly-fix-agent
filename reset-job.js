@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { readdirSync, rmSync } from 'node:fs';
+import os from 'node:os';
 // reset-fix-job.js
 // Reset a "Fix with AI" job so you can re-test the agent.
 //
@@ -46,6 +48,13 @@ const value = jiraKey || jobId || todoId;
 
 const url = `${APP_URL}/api/public/reset-job`;
 const body = JSON.stringify({ [key]: value, mode: MODE });
+
+const LOCK_DIR = `${os.homedir()}/.fix-agent/locks`;
+try {
+  const files = readdirSync(LOCK_DIR);
+  files.forEach(f => rmSync(`${LOCK_DIR}/${f}`));
+  if (files.length) console.log(`Cleared ${files.length} lock file(s)`);
+} catch { /* no lock dir, nothing to clear */ }
 
 fetch(url, {
   method: "POST",

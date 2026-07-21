@@ -1,0 +1,7 @@
+{
+  "name": "fix-agent",
+  "type": "module",
+  "version": "1.0.0",
+  "bin": { "report-step": "./bin/report-step" },
+  "scripts": { "start": "node --env-file=.env poller.js", "reset-job": "node --env-file=.env reset-job.js" }
+}

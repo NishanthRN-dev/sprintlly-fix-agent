@@ -1,4 +1,4 @@
-# fix-agent
+# Sprintly fix-agent
 
 Polling daemon that claims auto-fix jobs from [Sprintly](https://sprintly.wavemaker.com/login) and runs Claude Code to fix the linked JIRA ticket.
 

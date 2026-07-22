@@ -54,7 +54,9 @@ try {
   const files = readdirSync(LOCK_DIR);
   files.forEach(f => rmSync(`${LOCK_DIR}/${f}`));
   if (files.length) console.log(`Cleared ${files.length} lock file(s)`);
-} catch { /* no lock dir, nothing to clear */ }
+} catch { /* no lock dir, nothing to clear */
+   console.log("lock folder is empty")
+ }
 
 fetch(url, {
   method: "POST",
